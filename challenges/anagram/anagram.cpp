@@ -1,6 +1,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
+#include <stdlib.h>
 
 using namespace std;
 using std::fstream;
@@ -9,6 +10,8 @@ using std::ifstream;
 using std::ios;
 using std::string;
 
+int numberOfLines;
+
 void open_file(char* path)
 {
     ifstream is;
@@ -16,11 +19,9 @@ void open_file(char* path)
     ifstream myfile (path);
     if (myfile.is_open())
     {
-        while (! myfile.eof())
-        {
-            getline (myfile,line);
-            cout << line << endl;
-        }
+        if(getline(myfile, line))
+            numberOfLines = atoi(line.c_str());
+
         myfile.close();
     }
 }
