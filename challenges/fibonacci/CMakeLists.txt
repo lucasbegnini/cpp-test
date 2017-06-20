@@ -1,1 +1,1 @@
-add_challenge(fibonacci)
+add_executable(fibonacci fibonacci.cpp)
