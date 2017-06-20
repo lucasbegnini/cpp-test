@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <sstream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 using std::fstream;
@@ -16,6 +17,13 @@ int numberOfLines;
 
 void check_anagram(string word1, string word2)
 {
+    if(word1.size() == word2.size())
+    {
+        cout << word1 << " is anagram of " << word2  << endl;
+
+    }else{
+        cout << word1 << " not is anagram of " << word2  << endl;
+    }
 }
 
 void split_variable(const char* line)
