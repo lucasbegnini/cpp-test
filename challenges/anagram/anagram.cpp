@@ -15,14 +15,20 @@ using std::string;
 
 int numberOfLines;
 
-void check_anagram(string word1, string word2)
+void check_anagram(string _word1, string _word2)
 {
+    string word1 = _word1;
+    string word2 = _word2;
     if(word1.size() == word2.size())
     {
-        cout << word1 << " is anagram of " << word2  << endl;
-
+        sort(word1.begin(),word1.end());
+        sort(word2.begin(),word2.end());
+        if(word1 == word2 )
+            cout << _word1 << " is an anagram of " << _word2  << endl;
+        else
+            cout << _word1 << " is not an anagram of " << _word2  << endl;
     }else{
-        cout << word1 << " not is anagram of " << word2  << endl;
+        cout << _word1 << " is not an anagram of " << _word2  << endl;
     }
 }
 
