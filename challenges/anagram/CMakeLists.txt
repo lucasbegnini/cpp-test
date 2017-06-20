@@ -1,1 +1,1 @@
-add_challenge(anagram)
+add_executable(anagram anagram.cpp)
