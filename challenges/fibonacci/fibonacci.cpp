@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
+#include <stdint.h>
 
 using namespace std;
 using std::ifstream;
@@ -10,6 +11,31 @@ using std::ofstream;
 
 
 int fibonacciNumberId;
+
+uint64_t Fibonacci(int n)
+{
+    int a = 1,b = 1;
+    uint64_t x = 0;
+    
+    if(n == 1)
+    { 
+       x=a;
+    }
+
+    if(n == 2)
+    {
+       x=b;
+    }
+    
+    for(int i = 3; i<=n; i++)
+     {
+        x=a+b;
+        a=b;
+        b=x;
+     }
+    
+    return x;
+}
 
 void open_file(char* path)
 {
@@ -23,6 +49,8 @@ void open_file(char* path)
 
         myfile.close();
     }
+   cout << fibonacciNumberId << endl; 
+    cout << Fibonacci(fibonacciNumberId) << endl;
 }
 
 int main(int argc, char** argv)
