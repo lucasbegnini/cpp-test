@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 #include <stdlib.h>
+#include <sstream>
+#include <vector>
 
 using namespace std;
 using std::fstream;
@@ -11,6 +13,22 @@ using std::ios;
 using std::string;
 
 int numberOfLines;
+
+void check_anagram(string word1, string word2)
+{
+}
+
+void split_variable(const char* line)
+{
+    //Split line
+    std::vector<std::string> result;
+    std::istringstream iss(line);    
+    for(std::string s; iss >> s;)
+    {
+        result.push_back(s);
+    }
+    check_anagram(result[0],result[1]);
+}
 
 void open_file(char* path)
 {
@@ -22,6 +40,11 @@ void open_file(char* path)
         if(getline(myfile, line))
             numberOfLines = atoi(line.c_str());
 
+        for(int i = 0; i < numberOfLines; i++)
+        {
+            getline (myfile,line);
+            split_variable(line.c_str());          
+        }
         myfile.close();
     }
 }
