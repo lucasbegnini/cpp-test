@@ -1,1 +1,1 @@
-add_challenge(functional_anarchy)
+add_executable(functional_anarchy functional_anarchy.cpp)
