@@ -1,1 +1,1 @@
-add_challenge(stairway_to_heaven)
+add_executable(stairway_to_heaven stairway_to_heaven.cpp)
