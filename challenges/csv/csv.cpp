@@ -9,6 +9,18 @@ int numberOfLines;
 using namespace std;
 using std::ifstream;
 
+void split_variable(const char* line)
+{
+    std::vector<std::string> result;
+    string out;
+    std::istringstream iss(line);
+    for(int i=0; i<5; i++)
+    {
+        getline(iss,out,',');
+        result.push_back(out);
+    }
+}
+
 void open_file(char* path)
 {
     string line;
@@ -17,6 +29,13 @@ void open_file(char* path)
     {
         if(getline(myfile, line))
             numberOfLines = atoi(line.c_str());
+
+        for(int i = 0; i < numberOfLines; i++)
+        {
+            getline (myfile,line);
+            split_variable(line.c_str());
+        }
+
         myfile.close();
     }
 }
