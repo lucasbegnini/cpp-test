@@ -9,6 +9,15 @@ using namespace std;
 using std::fstream;
 using std::string;
 
+void sort_n_show(vector<int> results)
+{
+    sort(results.begin(), results.end());
+
+    for(int i=0; i<results.size();i++)
+        cout << results[i] << endl;
+
+}
+
 void open_file(char* path)
 {
     vector<int> results;
@@ -21,11 +30,16 @@ void open_file(char* path)
         while(!myfile.eof())
         {
             getline (myfile,line);
+            if(line != "\0")
+            {
             aux = atoi(line.c_str());
             results.push_back(aux);
+            }
         }
     }
+
     myfile.close();
+    sort_n_show(results);
 }
 
 
