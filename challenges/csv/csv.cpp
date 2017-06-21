@@ -8,6 +8,10 @@
 int numberOfLines;
 using namespace std;
 using std::ifstream;
+void show_text(vector<string> result)
+{
+    cout << result [0] << " is " << result[4] << " years old and lives in " << result[2] <<", " << result[1] << endl;
+}
 
 void split_variable(const char* line)
 {
@@ -19,6 +23,7 @@ void split_variable(const char* line)
         getline(iss,out,',');
         result.push_back(out);
     }
+    show_text(result);
 }
 
 void open_file(char* path)
