@@ -11,6 +11,25 @@ using std::string;
 
 int heavenDegrees;
 
+void draw_heaven_degress(int numberOfDegress)
+{
+    if(numberOfDegress <= 0)
+    {
+        cout << "Heaven dont belong to you" << endl;
+    }else{
+        for(int i=numberOfDegress; i>0 ;i--)
+        {
+          for(int j=0; j < numberOfDegress; j++)
+          {
+              if(j < i)
+                cout << " ";
+              else
+                cout << "#";
+          }
+          cout << endl;
+        }
+    }
+}
 void read_file(char* path)
 {
     string line;
@@ -22,6 +41,7 @@ void read_file(char* path)
 
         myfile.close();
     }
+    draw_heaven_degress(heavenDegrees);
 }
 
 int main(int argc, char** argv)
