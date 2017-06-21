@@ -1,1 +1,1 @@
-add_challenge(csv)
+add_executable(csv csv.cpp)
