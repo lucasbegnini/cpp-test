@@ -45,17 +45,17 @@ public:
     {}
 };
 
-void readInput(BlueNightSky& bluenightSky)
+void readInput(BlueNightSky& blueNightSky)
 {
 	int n = 0;
 	std::cin >> n;
 
-	nightSky.stars(n);
+    blueNightSky.stars(n);
 }
 
-int getAmountOfStars(const BlueSky& blueSky)
+int getAmountOfStars(const BlueNightSky& blueNightSky)
 {
-	return blueSky.stars();
+    return blueNightSky.stars();
 }
 
 int main(int argc, char** argv)
