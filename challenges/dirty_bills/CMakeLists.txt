@@ -1,1 +1,1 @@
-add_challenge(dirty_bills)
+add_executable(dirty_bills dirty_bills.cpp)
