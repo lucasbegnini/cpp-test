@@ -1,1 +1,1 @@
-add_challenge(inheritance)
+add_executable(inheritance inheritance.cpp)
