@@ -5,72 +5,74 @@ using namespace std;
 class Animal
 {
 public:
-    Animal(){}
-    string name;
-    string sound;
+    Animal(string _name="", string _sound =""){
+        name = _name;
+        sound = _sound;
+    }
     /// This is the function which will be called to reproduce the sound each
     /// animal makes.
     void makeSound();
 
 	/// This is our factory. You need to code the missing implementation.
-    static Animal* create(const std::string& name, Animal* animal);
+    static Animal* create(const string &name);
 
 	/// This function will terminate the class instance.
 	static void destroy(Animal* animal)
 	{
-		delete animal;
+        delete animal;
 	}
 private:
+    string name;
+    string sound;
 };
 
 // Write your classes here
 void Animal::makeSound()
 {
-    cout << sound;
+    cout << sound << endl;
 }
 // This is the function you need to change in order to instantiate the required
 // classes.
-Animal* Animal::create(const std::string& _name, Animal* animal)
+Animal* Animal::create(const string &_name)
 {
     //Convert to lowcase
    // transform(_name.begin(), _name.end(), _name.begin(), ::tolower);
-
-    animal->name = _name;
+    string _sound;
 
     if(_name == "dog")
-        animal->sound = "woof";
+        _sound = "woof";
     else if(_name == "cat")
-        animal->sound = "meow";
+        _sound = "meow";
     else if(_name == "bird")
-        animal->sound = "tweet";
+        _sound = "tweet";
     else if(_name == "mouse")
-        animal->sound = "squeek";
+        _sound = "squeek";
     else if(_name == "cow")
-        animal->sound = "moo";
+        _sound = "moo";
     else if(_name == "frog")
-        animal->sound = "croak";
+        _sound = "croak";
     else if(_name == "elephant")
-        animal->sound = "toot";
+        _sound = "toot";
     else if(_name == "duck")
-        animal->sound = "quack";
+        _sound = "quack";
     else if(_name == "fish")
-        animal->sound = "blub";
+        _sound = "blub";
     else if(_name == "seal")
-        animal->sound = "ow ow ow";
+        _sound = "ow ow ow";
+    Animal *animal = new Animal(_name, _sound);
 
-	return 0;
+    return animal;
 }
 
 void makeSound(const std::string& name)
 {
 	// Create our instance
-    Animal* animal;
-    Animal::create(name,animal);
+    Animal* animal = Animal::create(name);
 
-	animal->makeSound();
+    animal->makeSound();
 
-	// Destroy our instance
-	Animal::destroy(animal);
+    // Destroy our instance
+    Animal::destroy(animal);
 }
 
 int main(int argc, char** argv)
@@ -87,6 +89,6 @@ int main(int argc, char** argv)
 
 		makeSound(animal);
 	}
-
 	return 0;
+
 }
