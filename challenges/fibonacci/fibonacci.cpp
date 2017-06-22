@@ -18,28 +18,27 @@ uint64_t Fibonacci(int n)
     uint64_t x = 0;
     
     if(n == 1)
-    { 
-       x=a;
+    {
+        x=a;
     }
 
     if(n == 2)
     {
-       x=b;
+        x=b;
     }
     
     for(int i = 3; i<=n; i++)
-     {
+    {
         x=a+b;
         a=b;
         b=x;
-     }
+    }
     
     return x;
 }
 
 void open_file(char* path)
 {
-    ifstream is;
     string line;
     ifstream myfile (path);
     if (myfile.is_open())
@@ -49,18 +48,21 @@ void open_file(char* path)
 
         myfile.close();
     }
-   cout << fibonacciNumberId << endl; 
+    cout << fibonacciNumberId << endl;
     cout << Fibonacci(fibonacciNumberId) << endl;
 }
 
 int main(int argc, char** argv)
 {
     if(argc == 1)
-     { 
-        cout << "Paramters missing\n";
+    {
+        cin >> fibonacciNumberId;
+        cout << Fibonacci(fibonacciNumberId) << endl;
         return 0;
-     }
-
-    open_file(argv[1]);
-	return 0;
+    }
+    if(argc == 2)
+    {
+        open_file(argv[1]);
+        return 0;
+    }
 }
