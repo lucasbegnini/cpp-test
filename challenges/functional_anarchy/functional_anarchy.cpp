@@ -13,7 +13,7 @@ class FunctionalAnarchy
 {
 public:
     int numberOfLines;
-    void sort_n_show(vector<int> results)
+    void sort_n_show()
     {
         sort(results.begin(), results.end());
 
@@ -23,7 +23,6 @@ public:
 
     void open_file(const char* path)
     {
-        vector<int> results;
         string line;
         int aux;
         ifstream myfile (path);
@@ -44,10 +43,16 @@ public:
         }
 
         myfile.close();
-        sort_n_show(results);
+        sort_n_show();
+    }
+
+    void insertInResults(int aux)
+    {
+        results.push_back(aux);
     }
 
 private:
+    vector<int> results;
 };
 
 
@@ -55,8 +60,15 @@ private:
 int main(int argc, char** argv)
 {
     if(argc == 1) {
-        cout << "Parameters missing\n";
-        return 0;
+        FunctionalAnarchy functional;
+        cin >> functional.numberOfLines;
+        while(functional.numberOfLines--)
+        {
+            int aux;
+            cin >> aux;
+            functional.insertInResults(aux);
+        }
+        functional.sort_n_show();
     }
     if(argc ==2)
     {
