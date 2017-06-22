@@ -10,7 +10,7 @@ public:
     string sound;
     /// This is the function which will be called to reproduce the sound each
     /// animal makes.
-	virtual void makeSound() const = 0;
+    void makeSound();
 
 	/// This is our factory. You need to code the missing implementation.
     static Animal* create(const std::string& name, Animal* animal);
@@ -24,7 +24,10 @@ private:
 };
 
 // Write your classes here
-
+void Animal::makeSound()
+{
+    cout << sound;
+}
 // This is the function you need to change in order to instantiate the required
 // classes.
 Animal* Animal::create(const std::string& _name, Animal* animal)
