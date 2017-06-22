@@ -14,6 +14,14 @@ class DirtyBills
 public:
     DirtyBills(){}
 
+    int sum(listOfDirty)
+    {
+        numberOfDirty = 0;
+        for(int i=0; i<listOfDirty;i++)
+            numberOfDirty =+ listOfDirty[i];
+        return numberOfDirty;
+    }
+
     int split_variable(const char* line)
     {
         //Split line
