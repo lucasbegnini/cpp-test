@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-
+#include <vector>
 using namespace std;
 class Palindrome
 {
@@ -18,7 +18,24 @@ public:
         return 1;
     }
 
+    void insertWords(string word)
+    {
+        words.push_back(word);
+    }
+
+    void verifyWords()
+    {
+        for(int i = 0; i<words.size();i++)
+        {
+            if(check_palindrome(words[i]))
+                cout << words[i] << " is palindrome" << endl;
+            else
+                cout << words[i] << " is not a palindrome" << endl;
+        }
+    }
+
 private:
+    vector<string> words;
 
 };
 int main(int argc, char** argv)
@@ -29,10 +46,11 @@ int main(int argc, char** argv)
         cin >> pali.numberOfPalindromes;
         while(pali.numberOfPalindromes--)
         {
-
+            string line;
+            cin >> line;
+            pali.insertWords(line);
         }
-
-
+        pali.verifyWords();
         return 0;
     }
 }
