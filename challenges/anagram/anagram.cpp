@@ -38,7 +38,7 @@ public:
     }
 
 
-    int split_variable(const char* line)
+    int split_variable(const string line)
     {
         //Split line
         std::vector<std::string> result;
@@ -74,13 +74,23 @@ public:
 
 int main(int argc, char** argv)
 {
-    if(argc == 1) { // Sem parametros
-        cout << "Parametros faltando\n";
-        return 0;
+    if(argc == 1) {
+        Anagram _anagram;
+        cin >> _anagram.numberOfLines;
+        while(_anagram.numberOfLines--)
+        {
+            string line;
+            cin.ignore();
+            getline(cin, line, '\n');
+            _anagram.split_variable(line);
+        }
     }
 
-    Anagram _anagram;
-    _anagram.open_file(argv[1]);
+    if(argc == 2)
+    {
+        Anagram _anagram;
+        _anagram.open_file(argv[1]);
+    }
 
     return 0;
 }
