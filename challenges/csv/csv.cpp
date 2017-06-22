@@ -11,14 +11,14 @@ class Csv
 {
 public:
     Csv() {}
-
+    int numberOfLines;
     void show_text(vector<string> result)
     {
         cout << result [0] << " is " << result[4] << " years old and lives in " << result[2] <<", " << result[1] << endl;
     }
 
 
-    void split_variable(const char* line)
+    void split_variable(string line)
     {
         std::vector<std::string> result;
         string out;
@@ -54,15 +54,21 @@ public:
     }
 
 private:
-    int numberOfLines;
 };
 
 
 int main(int argc, char** argv)
 {
     if(argc == 1) {
-        cout << "Parameters missing\n";
-        return 0;
+        Csv csv;
+        cin >> csv.numberOfLines;
+        while(csv.numberOfLines--)
+        {
+            string line;
+            cin.ignore();
+            getline(cin, line, '\n');
+            csv.split_variable(line);
+        }
     }
     Csv csv;
     if(!csv.open_file(argv[1]))
