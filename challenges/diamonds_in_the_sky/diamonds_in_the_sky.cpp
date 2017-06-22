@@ -45,7 +45,7 @@ public:
     {}
 };
 
-void readInput(NightSky& nightSky)
+void readInput(BlueNightSky& bluenightSky)
 {
 	int n = 0;
 	std::cin >> n;
