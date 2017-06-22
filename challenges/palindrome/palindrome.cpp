@@ -1,7 +1,13 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
+#include <stdlib.h>
+
 using namespace std;
+using std::ifstream;
+using std::string;
+
 class Palindrome
 {
 public:
@@ -34,6 +40,28 @@ public:
         }
     }
 
+    int openFile(char* path)
+    {
+        string line;
+        ifstream myfile (path);
+        if (myfile.is_open())
+        {
+            if(getline(myfile, line))
+                numberOfPalindromes = atoi(line.c_str());
+
+            for(int i = 0; i < numberOfPalindromes; i++)
+            {
+                getline (myfile,line);
+                insertWords(line);
+            }
+            verifyWords();
+            myfile.close();
+            return 0;
+        }else{
+            return -1;
+        }
+    }
+
 private:
     vector<string> words;
 
@@ -52,5 +80,14 @@ int main(int argc, char** argv)
         }
         pali.verifyWords();
         return 0;
+    }
+
+    if( argc == 2)
+    {
+        Palindrome pali;
+        if(!pali.openFile(argv[1]))
+            return 0;
+        else
+            return -1;
     }
 }
