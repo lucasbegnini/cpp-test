@@ -22,7 +22,7 @@ public:
         return numberOfDirty;
     }
 
-    int split_variable(const char* line)
+    int split_variable(string line)
     {
         //Split line
         std::vector<std::string> result;
@@ -56,6 +56,16 @@ public:
         }
     }
 
+    void setNumberOfLines(int number)
+    {
+        numberOfLines = number;
+    }
+
+    int getNumberOfLines()
+    {
+        return numberOfLines;
+    }
+
 private:
     int numberOfLines;
     int numberOfDirty;
@@ -64,16 +74,33 @@ private:
 int main(int argc, char** argv)
 {
     if(argc == 1) {
-        cout << "Parameters missings\n";
-        return -1;
-    }
+        DirtyBills dirty;
+        int numberIn;
+        cin >> numberIn;
+        dirty.setNumberOfLines(numberIn);
 
-    DirtyBills _dirty;
-    _dirty.open_file(argv[1]);
-    if(_dirty.sum() > 0)
-        cout << "There are " << _dirty.sum() << " dirty bills" << endl;
-    else
-        cout << "There are no dirty bills" << endl;
+        int numberOfMonkeys = dirty.getNumberOfLines();
+        while(numberOfMonkeys--)
+        {
+            string line;
+            cin.ignore();
+            getline(cin, line, '\n');
+            dirty.split_variable(line);
+        }
+        if(dirty.sum() > 0)
+            cout << "There are " << dirty.sum() << " dirty bills" << endl;
+        else
+            cout << "There are no dirty bills" << endl;
+    }
+    if(argc == 2)
+    {
+        DirtyBills _dirty;
+        _dirty.open_file(argv[1]);
+        if(_dirty.sum() > 0)
+            cout << "There are " << _dirty.sum() << " dirty bills" << endl;
+        else
+            cout << "There are no dirty bills" << endl;
+    }
 
     return 0;
 }
