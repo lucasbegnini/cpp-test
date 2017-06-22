@@ -7,12 +7,12 @@ public:
 		: m_stars(stars)
 	{}
 
-	int stars() const
+    int getStars() const
 	{
 		return m_stars;
 	}
 
-	void stars(int n)
+    void setStars(int n)
 	{
 		m_stars = n;
 	}
@@ -37,11 +37,11 @@ public:
 	{}
 };
 
-class BlueNightSky : public BlueSky, public NightSky
+class BlueNightSky : public BlueSky
 {
 public:
     BlueNightSky(int stars = 0)
-        : Sky(stars)
+        : BlueSky(stars)
     {}
 };
 
@@ -50,12 +50,12 @@ void readInput(BlueNightSky& blueNightSky)
 	int n = 0;
 	std::cin >> n;
 
-    blueNightSky.stars(n);
+    blueNightSky.setStars(n);
 }
 
 int getAmountOfStars(const BlueNightSky& blueNightSky)
 {
-    return blueNightSky.stars();
+    return blueNightSky.getStars();
 }
 
 int main(int argc, char** argv)
