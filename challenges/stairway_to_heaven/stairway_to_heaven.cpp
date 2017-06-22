@@ -23,16 +23,16 @@ public:
         {
             cout << "Heaven dont belong to you" << endl;
         }else{
-            for(int i=numberOfDegress; i>0 ;i--)
+            for(int i=numberOfDegress+1; i>0 ;i--)
             {
-              for(int j=0; j < numberOfDegress; j++)
-              {
-                  if(j < i)
-                    cout << " ";
-                  else
-                    cout << "#";
-              }
-              cout << endl;
+                for(int j=0; j < numberOfDegress+1; j++)
+                {
+                    if(j < i)
+                        cout << " ";
+                    else
+                        cout << "#";
+                }
+                cout << endl;
             }
         }
     }
@@ -61,8 +61,10 @@ private:
 int main(int argc, char** argv)
 {
     if(argc == 1) {
-        cout << "Parameters missing\n";
-        return 0;
+        StairwayToHeaven stair;
+        int in;
+        cin >> in;
+        stair.draw_heaven_degress(in);
     }
 
     if(argc == 2)
