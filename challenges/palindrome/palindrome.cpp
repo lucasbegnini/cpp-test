@@ -5,6 +5,7 @@ using namespace std;
 class Palindrome
 {
 public:
+    int numberOfPalindromes;
     int check_palindrome(string in)
     {
         int reverse = 0;
@@ -22,5 +23,16 @@ private:
 };
 int main(int argc, char** argv)
 {
-	return 0;
+    if(argc == 1)
+    {
+        Palindrome pali;
+        cin >> pali.numberOfPalindromes;
+        while(pali.numberOfPalindromes--)
+        {
+
+        }
+
+
+        return 0;
+    }
 }
