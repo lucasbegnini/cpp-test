@@ -14,11 +14,11 @@ class DirtyBills
 public:
     DirtyBills(){}
 
-    int sum(listOfDirty)
+    int sum()
     {
         numberOfDirty = 0;
-        for(int i=0; i<listOfDirty;i++)
-            numberOfDirty =+ listOfDirty[i];
+        for(int i=0; i<listOfDirty.size();i++)
+            numberOfDirty += listOfDirty[i];
         return numberOfDirty;
     }
 
@@ -50,6 +50,7 @@ public:
                 split_variable(line.c_str());
             }
             myfile.close();
+            return 0;
         }else{
             return -1;
         }
@@ -62,5 +63,17 @@ private:
 };
 int main(int argc, char** argv)
 {
-	return 0;
+    if(argc == 1) {
+        cout << "Parameters missings\n";
+        return -1;
+    }
+
+    DirtyBills _dirty;
+    _dirty.open_file(argv[1]);
+    if(_dirty.sum() > 0)
+        cout << "There are " << _dirty.sum() << " dirty bills" << endl;
+    else
+        cout << "There are no dirty bills" << endl;
+
+    return 0;
 }
