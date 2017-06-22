@@ -40,8 +40,9 @@ public:
 class BlueNightSky : public BlueSky, public NightSky
 {
 public:
-	BlueNightSky()
-	{}
+    BlueNightSky(int stars = 0)
+        : Sky(stars)
+    {}
 };
 
 void readInput(NightSky& nightSky)
