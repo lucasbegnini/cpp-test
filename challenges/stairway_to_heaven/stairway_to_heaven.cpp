@@ -9,40 +9,54 @@ using namespace std;
 using std::ifstream;
 using std::string;
 
-int heavenDegrees;
-
-void draw_heaven_degress(int numberOfDegress)
+class StairwayToHeaven
 {
-    if(numberOfDegress <= 0)
+public:
+    void setHeavenDegress(int in)
     {
-        cout << "Heaven dont belong to you" << endl;
-    }else{
-        for(int i=numberOfDegress; i>0 ;i--)
+        heavenDegrees = in;
+    }
+
+    void draw_heaven_degress(int numberOfDegress)
+    {
+        if(numberOfDegress <= 0)
         {
-          for(int j=0; j < numberOfDegress; j++)
-          {
-              if(j < i)
-                cout << " ";
-              else
-                cout << "#";
-          }
-          cout << endl;
+            cout << "Heaven dont belong to you" << endl;
+        }else{
+            for(int i=numberOfDegress; i>0 ;i--)
+            {
+              for(int j=0; j < numberOfDegress; j++)
+              {
+                  if(j < i)
+                    cout << " ";
+                  else
+                    cout << "#";
+              }
+              cout << endl;
+            }
         }
     }
-}
-void read_file(char* path)
-{
-    string line;
-    ifstream myfile (path);
-    if (myfile.is_open())
-    {
-        if(getline(myfile, line))
-            heavenDegrees = atoi(line.c_str());
 
-        myfile.close();
+    void read_file(char* path)
+    {
+        string line;
+        ifstream myfile (path);
+        if (myfile.is_open())
+        {
+            if(getline(myfile, line))
+                heavenDegrees = atoi(line.c_str());
+
+            myfile.close();
+        }
+        draw_heaven_degress(heavenDegrees);
     }
-    draw_heaven_degress(heavenDegrees);
-}
+
+private:
+    int heavenDegrees;
+};
+
+
+
 
 int main(int argc, char** argv)
 {
@@ -51,6 +65,10 @@ int main(int argc, char** argv)
         return 0;
     }
 
-    read_file(argv[1]);
-	return 0;
+    if(argc == 2)
+    {
+        StairwayToHeaven stair;
+        stair.read_file(argv[1]);
+        return 0;
+    }
 }
