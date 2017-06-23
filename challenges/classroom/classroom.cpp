@@ -29,15 +29,15 @@ public:
 
     void executeQueries()
     {
-        if(result[0] == 1)
+        if(result[result.size()-2] == 1)
         {
-           addStudents(result[1]);
+            addStudents(result[result.size()-1]);
 
         }
 
-        if(result[0] == 2)
+        if(result[result.size()-2] == 2)
         {
-            //consult student in present list in the given position
+            findStudent(result[result.size()-1]);
         }
     }
 
@@ -51,6 +51,20 @@ public:
         }
         sort(students.begin(),students.end());
     }
+
+    void findStudent(int numberOfConsults)
+    {
+        int id;
+        vector<int> ids;
+        for(int i=0;i<numberOfConsults;i++)
+        {
+            cin >> id;
+            ids.push_back(id);
+        }
+        for(int i=0;i<ids.size();i++)
+            cout << students[ids[i-1]] << endl;
+    }
+
 private:
     string query;
     vector<int> result;
