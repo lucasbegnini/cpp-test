@@ -5,18 +5,25 @@
 #include <list>
 #include <vector>
 #include <sstream>
+#include <fstream>
+
 
 using namespace std;
 using std::string;
+using std::ifstream;
 class Classroom
 {
 public:
     int numberOfQueries;
+    bool fileMode;
+    ifstream myfile;
 
     void getQueries()
     {
-        cin.ignore();
-        getline(cin, query, '\n');
+        if(fileMode)
+            getline(myfile,query, '\n');
+        else
+            getline(cin, query, '\n');
     }
     void splitQueries()
     {
@@ -46,7 +53,11 @@ public:
         string auxStudent;
         for(int i = 0; i< numberOfStudents;i++)
         {
-            getline(cin, auxStudent, '\n');
+            if(fileMode)
+                getline(myfile,auxStudent, '\n');
+            else
+                getline(cin, auxStudent, '\n');
+
             students.push_back(auxStudent);
         }
         sort(students.begin(),students.end());
@@ -55,14 +66,42 @@ public:
     void findStudent(int numberOfConsults)
     {
         int id;
-        vector<int> ids;
         for(int i=0;i<numberOfConsults;i++)
         {
-            cin >> id;
-            ids.push_back(id);
+            if(fileMode)
+            {
+                string line;
+                getline(myfile,line);
+                id = atoi(line.c_str());
+            }
+            else{
+                cin >> id;
+            }
+         cout << students[id-1] << endl;
         }
-        for(int i=0;i<ids.size();i++)
-            cout << students[ids[i-1]] << endl;
+    }
+
+    int openFile(char* path)
+    {
+        string line;
+        myfile.open(path);
+
+        if (myfile.is_open())
+        {
+            if(getline(myfile, line))
+                numberOfQueries = atoi(line.c_str());
+
+            while(numberOfQueries--)
+            {
+                getQueries();
+                splitQueries();
+                executeQueries();
+            }
+            myfile.close();
+            return 1;
+        }else{
+            return 0;
+        }
     }
 
 private:
@@ -75,6 +114,7 @@ int main(int argc, char** argv)
     if(argc == 1)
     {
         Classroom classroom;
+        classroom.fileMode = false;
         cin >> classroom.numberOfQueries;
         while(classroom.numberOfQueries--)
         {
@@ -85,5 +125,16 @@ int main(int argc, char** argv)
         }
 
         return 0;
+    }
+
+    if(argc == 2)
+    {
+        Classroom classroom;
+        classroom.fileMode = true;
+        if(classroom.openFile(argv[1]))
+            return 0;
+        else
+            return -1;
+
     }
 }
